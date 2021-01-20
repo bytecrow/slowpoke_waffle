@@ -66,8 +66,9 @@ defmodule SlowpokeWaffle.StaticPlug do
   end
 
   defp aws_url(path, definition) do
-    {definition, version} = definition.get_waffle_definition_and_version(path)
-    Url.url(definition, path, version, [])
+    # {definition, version} = definition.get_waffle_definition_and_version(path)
+    # Url.url(definition, path, version, [])
+    "https://" <> Application.get_env(:waffle, :bucket) <> ".s3.amazonaws.com/" <> path
   end
 
   defp redirect_if_not_halted_to(%Conn{halted: true} = conn, _) do
